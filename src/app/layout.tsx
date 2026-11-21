@@ -13,6 +13,9 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const caveat = Caveat({ subsets: ["latin"], variable: "--font-caveat" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  openGraph: { type: "website", images: [{ url: "/og.png", width: 1200, height: 630 }] },
+  twitter: { card: "summary_large_image", images: ["/og.png"] },
   title: { default: `${profile.name}: AI Engineer & doodler`, template: `%s · ${profile.name}` },
   description:
     "Portfolio of Bharath S, an AI Engineer building production GenAI systems, with hand-drawn interactive stories.",

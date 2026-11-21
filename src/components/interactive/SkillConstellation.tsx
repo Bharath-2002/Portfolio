@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { skillGroups } from "@/content/skills";
 import { usePrefersReducedMotion } from "@/hooks/useMediaQuery";
 
-type Node = { label: string; g: number; x: number; y: number; vx: number; vy: number; hx: number; hy: number; r: number };
+type Node = { label: string; g: number; cx: number; x: number; y: number; vx: number; vy: number; hx: number; hy: number; r: number };
 
 const GROUP_COLORS = ["#ff5a2c", "#ffb347", "#f3ede2"]; // accent family + paper
 
@@ -19,6 +19,7 @@ export function SkillConstellation() {
     const c = canvas.current!;
     const ctx = c.getContext("2d")!;
     let w = 0, h = 0, raf = 0;
+    const fontFamily = getComputedStyle(document.body).fontFamily || "system-ui, sans-serif";
     const ptr = { x: -999, y: -999 };
     let nodes: Node[] = [];
 
@@ -31,16 +32,16 @@ export function SkillConstellation() {
       const centers = wide
         ? [[0.2, 0.5], [0.5, 0.5], [0.8, 0.5]]
         : [[0.5, 0.17], [0.5, 0.5], [0.5, 0.83]];
-      const radius = wide ? Math.min(w * 0.14, h * 0.36) : Math.min(w * 0.36, h * 0.13);
+      const radius = wide ? Math.min(w * 0.15, h * 0.4) : Math.min(w * 0.3, h * 0.125);
       nodes = [];
       skillGroups.forEach((grp, g) => {
         const n = grp.skills.length;
         grp.skills.forEach((label, i) => {
           const a = (i / n) * Math.PI * 2 + g;
-          const rr = radius * (0.55 + (i % 3) * 0.25);
-          const hx = Math.min(w - (wide ? 90 : 110), Math.max(14, centers[g][0] * w + Math.cos(a) * rr * (wide ? 1.15 : 1.1)));
+          const rr = radius * (0.7 + (i % 2) * 0.35);
+          const hx = Math.min(w - (wide ? 110 : 120), Math.max(wide ? 110 : 120, centers[g][0] * w + Math.cos(a) * rr * (wide ? 1.1 : 1)));
           const hy = centers[g][1] * h + Math.sin(a) * rr * 0.8;
-          nodes.push({ label, g, x: hx, y: hy, vx: 0, vy: 0, hx, hy, r: 3 + (label.length % 3) });
+          nodes.push({ label, g, cx: centers[g][0] * w, x: hx, y: hy, vx: 0, vy: 0, hx, hy, r: 3 + (label.length % 3) });
         });
       });
     };
@@ -48,7 +49,7 @@ export function SkillConstellation() {
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
       const f = focusRef.current;
-      ctx.font = "500 12px var(--font-inter), system-ui, sans-serif";
+      ctx.font = `500 12px ${fontFamily}`;
       ctx.textBaseline = "middle";
       // links within groups
       for (let g = 0; g < skillGroups.length; g++) {
@@ -67,7 +68,10 @@ export function SkillConstellation() {
         ctx.fillStyle = GROUP_COLORS[n.g];
         ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, 7); ctx.fill();
         ctx.fillStyle = on ? "rgba(243,237,226,.92)" : "rgba(243,237,226,.5)";
-        ctx.fillText(n.label, n.x + n.r + 6, n.y);
+        const left = n.hx < n.cx;
+        ctx.textAlign = left ? "right" : "left";
+        ctx.fillText(n.label, left ? n.x - n.r - 6 : n.x + n.r + 6, n.y);
+        ctx.textAlign = "left";
       }
       ctx.globalAlpha = 1;
     };
@@ -117,8 +121,16 @@ export function SkillConstellation() {
         ))}
       </div>
       <div className="glass overflow-hidden">
-        <canvas ref={canvas} data-cursor className="block h-[560px] w-full touch-pan-y md:h-[420px]" aria-label="Skill constellation" role="img" />
+        <canvas ref={canvas} data-cursor className="block h-[620px] w-full touch-pan-y md:h-[460px]" aria-hidden />
       </div>
+      <dl className="mt-6 grid gap-4 md:grid-cols-3">
+        {skillGroups.map((g) => (
+          <div key={g.id}>
+            <dt className="eyebrow mb-2">{g.label}</dt>
+            <dd className="text-sm leading-relaxed text-[var(--paper-dim)]">{g.skills.join(" · ")}</dd>
+          </div>
+        ))}
+      </dl>
     </div>
   );
 }

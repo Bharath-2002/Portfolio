@@ -27,7 +27,7 @@ export default function LabPage() {
         <h1 className="display-xl !text-[clamp(2.8rem,9vw,7rem)]">
           Resume bullets, <em>playable.</em>
         </h1>
-        <p className="hand mt-4 text-2xl text-accent md:text-3xl">things I shipped, minus the NDA</p>
+        <p className="hand mt-4 text-2xl text-accent md:text-3xl">the things I build, made playable</p>
       </header>
 
       <Block n="01" title="The queue that survives crashes" text="At BlueStone, bulk generation runs on a durable PostgreSQL job queue: leases, retries, crash recovery, idempotency keys, per-call cost metering. Break it yourself.">

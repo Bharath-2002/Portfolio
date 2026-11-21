@@ -6,7 +6,7 @@ export type JobStatus = "queued" | "leased" | "done";
 export type Job = { id: number; key: string; status: JobStatus; worker: number | null; leaseUntil: number; progress: number; attempts: number };
 export type Worker = { id: number; alive: boolean; reviveAt: number };
 export type LogLine = { id: number; tick: number; kind: "info" | "warn" | "ok"; text: string };
-export type Sim = { tick: number; jobs: Job[]; workers: Worker[]; cost: number; log: LogLine[]; nextId: number; logId: number; deduped: number };
+export type Sim = { tick: number; jobs: Job[]; workers: Worker[]; cost: number; log: LogLine[]; nextId: number; logId: number; deduped: number; completed: number; retries: number };
 
 export const LEASE_TICKS = 10; // lease lasts 10 ticks without a heartbeat
 export const COST_PER_CALL = 0.04;
@@ -25,6 +25,8 @@ export function createSim(jobCount = 12, workerCount = 3): Sim {
     nextId: jobCount + 1,
     logId: 0,
     deduped: 0,
+    completed: 0,
+    retries: 0,
     cost: 0,
     log: [],
     workers: Array.from({ length: workerCount }, (_, i) => ({ id: i + 1, alive: true, reviveAt: 0 })),
@@ -63,9 +65,18 @@ export function crashWorker(s: Sim, id?: number): Sim {
 
 export function step(prev: Sim): Sim {
   let s: Sim = { ...prev, tick: prev.tick + 1 };
+  let nextId = s.nextId;
   const jobs = s.jobs.map((j) => ({ ...j }));
+  // Keep the demo alive: when the queue runs low, new products arrive; finished jobs are trimmed.
+  if (jobs.filter((j) => j.status === "queued").length < 3) {
+    for (let i = 0; i < 5; i++, nextId++) jobs.push({ id: nextId, key: `sku-${1000 + nextId - 1}`, status: "queued", worker: null, leaseUntil: 0, progress: 0, attempts: 0 });
+  }
+  const trimmed = jobs.filter((j) => j.status !== "done").concat(jobs.filter((j) => j.status === "done").slice(-12));
+  jobs.splice(0, jobs.length, ...trimmed);
   const workers = s.workers.map((w) => ({ ...w }));
   let cost = s.cost;
+  let completed = s.completed;
+  let retries = s.retries;
   const events: [LogLine["kind"], string][] = [];
 
   // revive
@@ -75,7 +86,7 @@ export function step(prev: Sim): Sim {
   for (const j of jobs) {
     if (j.status === "leased" && s.tick > j.leaseUntil) {
       events.push(["warn", `lease expired on ${j.key} → requeued (attempt ${j.attempts + 1} next)`]);
-      j.status = "queued"; j.worker = null; j.progress = 0;
+      j.status = "queued"; j.worker = null; j.progress = 0; retries += 1;
     }
   }
 
@@ -91,13 +102,13 @@ export function step(prev: Sim): Sim {
       job.leaseUntil = s.tick + LEASE_TICKS; // heartbeat
       job.progress = Math.min(100, job.progress + RATE);
       if (job.progress >= 100) {
-        job.status = "done"; job.worker = null; cost += COST_PER_CALL;
+        job.status = "done"; job.worker = null; cost += COST_PER_CALL; completed += 1;
         events.push(["ok", `${job.key} done · +$${COST_PER_CALL.toFixed(2)}`]);
       }
     }
   }
 
-  s = { ...s, jobs, workers, cost };
+  s = { ...s, jobs, workers, cost, nextId, completed, retries };
   for (const [k, t] of events.slice(0, 3)) s = log(s, k, t);
   return s;
 }

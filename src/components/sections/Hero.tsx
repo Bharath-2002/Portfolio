@@ -15,7 +15,7 @@ const line = (i: number) => ({
 export function Hero() {
   return (
     <section className="relative grid items-center [overflow-x:clip] gap-10 lg:min-h-[78vh] lg:grid-cols-[1.25fr_1fr]">
-      <Image src="/art/doodle-hero.png" alt="" width={1600} height={900} priority
+      <Image src="/art/doodle-hero.webp" alt="" width={1400} height={788} loading="lazy"
         className="ink pointer-events-none absolute -right-10 -top-20 -z-10 w-[120%] max-w-none opacity-[0.16] md:-top-32 md:w-[75%]" />
 
       <div>

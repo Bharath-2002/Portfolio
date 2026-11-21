@@ -22,8 +22,6 @@ export function JobQueueLab() {
   }, [running]);
 
   const queued = s.jobs.filter((j) => j.status === "queued").length;
-  const done = s.jobs.filter((j) => j.status === "done").length;
-  const retries = s.jobs.reduce((n, j) => n + Math.max(0, j.attempts - 1), 0);
 
   return (
     <div className="glass p-5 md:p-8">
@@ -83,7 +81,7 @@ export function JobQueueLab() {
       </div>
 
       <dl className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
-        {[["Done", `${done}`], ["Retries", `${retries}`], ["Deduped", `${s.deduped}`], ["Spend", `$${s.cost.toFixed(2)}`]].map(([k, v]) => (
+        {[["Done", `${s.completed}`], ["Retries", `${s.retries}`], ["Deduped", `${s.deduped}`], ["Spend", `$${s.cost.toFixed(2)}`]].map(([k, v]) => (
           <div key={k} className="glass-inner p-3">
             <dt className="eyebrow">{k}</dt>
             <dd className="tnum font-display mt-1 text-2xl">{v}</dd>

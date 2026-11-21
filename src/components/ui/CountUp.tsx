@@ -16,7 +16,7 @@ export function CountUp({
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
   const reduce = useReducedMotion();
-  const [n, setN] = useState(reduce ? value : 0);
+  const [n, setN] = useState(0);
 
   useEffect(() => {
     if (!inView || reduce) return;
@@ -24,9 +24,9 @@ export function CountUp({
     return () => c.stop();
   }, [inView, reduce, value]);
 
-  const shown = n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  const shown = (reduce ? value : n).toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
   return (
-    <span ref={ref} className="tnum">
+    <span ref={ref} className="tnum" suppressHydrationWarning>
       {prefix}
       {shown}
       {suffix}

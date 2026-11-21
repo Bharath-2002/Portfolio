@@ -39,7 +39,7 @@ export function SketchGallery() {
         ))}
         <Reveal className="list-none">
           <li className="glass-inner grid aspect-square place-items-center border-dashed p-5 text-center md:aspect-auto md:min-h-full">
-            <p className="hand text-2xl text-[var(--paper-dim)]">your real sketches go here ✎<br /><span className="text-sm">add files in content/sketches.ts</span></p>
+            <p className="hand text-2xl text-[var(--paper-dim)]">my own pencil drawings are coming ✎</p>
           </li>
         </Reveal>
         {wide.map((s, i) => (

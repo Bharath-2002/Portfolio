@@ -7,7 +7,7 @@ export const profile = {
   github: "https://github.com/Bharath-2002",
   linkedin: "https://www.linkedin.com/in/bharath-s-b58875420",
   about:
-    "I build production GenAI systems end to end: from LLM and vision pipelines to the backend services and job queues that run them at scale. I also draw. Mostly bad cats, sometimes good robots.",
+    "I build production GenAI systems end to end: from LLM and vision pipelines to the backend services and job queues that run them at scale. I also draw. This site is full of my drawings.",
   longAbout:
     "AI Engineer who builds production GenAI systems end to end. I've built a multi-tenant AI image generation platform from scratch: LLM-driven template understanding, multi-model image generation with automated quality checks, a custom-trained keypoint model, and an intelligent catalogue import. Experienced with RAG, agents and copilots using OpenAI, Gemini, Claude, FastAPI and LangGraph, deployed on AWS.",
 } as const;

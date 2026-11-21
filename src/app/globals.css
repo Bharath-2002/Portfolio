@@ -87,6 +87,15 @@ html.lenis body {
   background: rgb(255 255 255 / 0.04);
 }
 
+/* On phones, plain translucent fill instead of blur for long lists of cards */
+@media (max-width: 767px) {
+  .glass.glass-lite {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: linear-gradient(145deg, rgb(40 34 29 / 0.78), rgb(26 22 19 / 0.78));
+  }
+}
+
 /* Ink drawings are white-on-black; screen-blend drops the black */
 .ink {
   mix-blend-mode: screen;

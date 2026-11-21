@@ -22,8 +22,8 @@ export const chapters: Chapter[] = [
     period: "Feb 2024 – Dec 2025",
     mode: "Hybrid",
     title: "Where I learned that production is the only real test.",
-    aside: "first boss fight: other people's legacy code",
-    art: "/art/ch-quantiphi.png",
+    aside: "chapter one: learning what production means",
+    art: "/art/ch-quantiphi.webp",
     bullets: [
       {
         lead: "GenAI automation",
@@ -53,7 +53,7 @@ export const chapters: Chapter[] = [
     mode: "On-site",
     title: "Teaching copilots to remember what you told them yesterday.",
     aside: "side quest: giving AI a memory",
-    art: "/art/ch-jnaara.png",
+    art: "/art/ch-jnaara.webp",
     bullets: [
       {
         lead: "Agent backbone",
@@ -83,7 +83,7 @@ export const chapters: Chapter[] = [
     mode: "On-site",
     title: "Turning a product catalogue into on-brand posters. 500 at a time.",
     aside: "current level: multi-tenant, GPU-adjacent, mildly sparkly",
-    art: "/art/ch-bluestone.png",
+    art: "/art/ch-bluestone.webp",
     bullets: [
       {
         lead: "Poster factory",

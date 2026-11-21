@@ -34,7 +34,7 @@ export function ChapterCard({ c, flip }: { c: Chapter; flip: boolean }) {
             {c.bullets.map((b, i) => (
               <motion.li key={b.lead} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "0px 0px -8% 0px" }} transition={{ duration: 0.5, delay: i * 0.05, ease: [0.23, 1, 0.32, 1] }}>
-                <Glass className="!rounded-[var(--r-inner)] p-4 md:p-5">
+                <Glass className="glass-lite !rounded-[var(--r-inner)] p-4 md:p-5">
                   <p className="font-medium text-paper">{b.lead}</p>
                   <p className="mt-1 text-sm leading-relaxed text-[var(--paper-dim)] md:text-[0.95rem]">{b.text}</p>
                 </Glass>

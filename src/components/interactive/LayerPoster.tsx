@@ -45,7 +45,7 @@ export function LayerPoster() {
           </motion.div>
           <motion.div style={{ translateZ: gap2 }} className="absolute inset-x-5 top-5">
             <p className="font-display text-3xl italic leading-none text-paper drop-shadow">Everyday<br />gold.</p>
-            <p className="mt-1 text-[0.6rem] uppercase tracking-[0.25em] text-paper/80">Studs · from ₹4,999</p>
+            <p className="mt-1 text-[0.6rem] uppercase tracking-[0.25em] text-paper/80">Studs · New collection</p>
           </motion.div>
         </motion.div>
 

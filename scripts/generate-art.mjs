@@ -21,6 +21,7 @@ const JOBS = {
   "ch-jnaara": `${STYLE} Subject: a head-and-shoulders silhouette with a branching neural memory tree growing out of the head, small vector dots and links, a copilot paper-plane circling it, a clock for persistent memory. Square composition.`,
   "ch-bluestone": `${STYLE} Subject: a human ear with a delicate stud earring, tiny keypoint crosshair markers on the lobe, a layered poster sheet peeling apart into text, image and shape layers beside it. Square composition.`,
   "doodle-hero": `${STYLE} Subject: a playful tangle of loops and arrows converging into a lightbulb, with small stars, a pencil and a floppy-eared cat doodle. Wide composition 16:9.`,
+  "ear": `${STYLE} Subject: a single human ear in clean side profile, facing right with the lobe pointing down, bold clear outline of helix, antihelix and a visible earlobe, simple and anatomically readable, no jewelry, no head, centered, large. Portrait 3:4 composition.`,
   "sk-1": `${STYLE} Subject: a cozy desk with a laptop, a mug of steaming coffee, a plant and stacked books. Square composition.`,
   "sk-2": `${STYLE} Subject: a camera and a film strip with tiny landscapes inside the frames. Square composition.`,
   "sk-3": `${STYLE} Subject: an astronaut floating and holding a balloon shaped like a speech bubble. Square composition.`,
@@ -58,7 +59,7 @@ const want = (n) => only.length === 0 || only.includes(n);
 for (const [name, prompt] of Object.entries(JOBS)) {
   const out = resolve(root, "public/art", `${name}.png`);
   if (!want(name) || (existsSync(out) && !only.includes(name))) continue;
-  const ar = name === "doodle-hero" || name === "sk-6" ? "16:9" : "1:1";
+  const ar = name === "doodle-hero" || name === "sk-6" ? "16:9" : name === "ear" ? "3:4" : "1:1";
   try {
     writeFileSync(out, await call([{ text: prompt }], ar));
     console.log("ok", name);

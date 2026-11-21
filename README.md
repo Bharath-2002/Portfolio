@@ -34,6 +34,7 @@ npm run build      # static export → out/
 ## Art pipeline
 `node scripts/generate-art.mjs` generates the chalk illustrations with Nano Banana 2.1 (2K).
 It reads `GEMINI_API_KEY` from a local `.env` (git-ignored); the key is never shipped to the client.
+`node scripts/optimize-art.mjs` converts art to WebP; `node scripts/make-og.mjs` builds the share image.
 `node scripts/make-portraits.mjs` makes the portrait crop and a local pencil-sketch version of `photo.jpeg`.
 
 Illustrations are AI-assisted. Real drawings can be added in `src/content/sketches.ts` (`realSketches`).
