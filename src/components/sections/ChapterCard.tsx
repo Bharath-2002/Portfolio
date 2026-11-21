@@ -23,8 +23,8 @@ export function ChapterCard({ c, flip }: { c: Chapter; flip: boolean }) {
       </div>
 
       <div className={cn("grid items-center gap-8 lg:grid-cols-2 lg:gap-14", flip && "lg:[&>*:first-child]:order-2")}>
-        <motion.div style={{ y, rotate: rot }} className="relative mx-auto aspect-square w-full max-w-[420px] lg:max-w-none">
-          <Image src={c.art} alt={`Chalk illustration for ${c.company}`} fill sizes="(min-width:1024px) 480px, 80vw" className="ink object-contain" />
+        <motion.div style={{ y, rotate: rot }} className="ink relative mx-auto aspect-square w-full max-w-[420px] lg:max-w-none">
+          <Image src={c.art} alt={`Chalk illustration for ${c.company}`} fill sizes="(min-width:1024px) 480px, 80vw" className="object-contain" />
         </motion.div>
 
         <div>

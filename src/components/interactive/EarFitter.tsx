@@ -44,8 +44,8 @@ export function EarFitter() {
               <circle cx={PIERCE.x} cy={PIERCE.y} r={near ? 16 : 9} fill="none" stroke="var(--accent)" strokeWidth="2" style={{ transition: "r 150ms" }} />
               <circle cx={PIERCE.x} cy={PIERCE.y} r="3" fill="var(--accent)" />
               <circle cx="168" cy="318" r="5" fill="none" stroke="#ffb347" strokeWidth="2" />
-              <text x={PIERCE.x + 14} y={PIERCE.y - 12} fill="var(--accent)" fontSize="11" fontFamily="monospace">piercing</text>
-              <text x="180" y="338" fill="#ffb347" fontSize="11" fontFamily="monospace">lobe-centre</text>
+              <text x={PIERCE.x - 16} y={PIERCE.y - 14} textAnchor="end" fill="var(--accent)" fontSize="11" fontFamily="monospace">piercing</text>
+              <text x="124" y="362" fill="#ffb347" fontSize="11" fontFamily="monospace">lobe-centre</text>
             </g>
           )}
         </svg>

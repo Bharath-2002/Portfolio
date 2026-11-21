@@ -99,7 +99,7 @@ html.lenis body {
 }
 .display-xl {
   font-family: var(--font-fraunces), Georgia, serif;
-  font-size: clamp(3rem, 11vw, 9rem);
+  font-size: clamp(2.75rem, 9.5vw, 7.25rem);
   line-height: 0.92;
   letter-spacing: -0.035em;
   font-weight: 400;

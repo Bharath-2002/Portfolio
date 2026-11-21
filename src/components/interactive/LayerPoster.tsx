@@ -38,7 +38,7 @@ export function LayerPoster() {
   return (
     <div className="glass p-5 md:p-8">
       <div className="relative mx-auto h-[360px] w-full max-w-md [perspective:1200px] md:h-[440px]">
-        <motion.div style={{ rotateX: rotX, rotateZ: rotZ }} className="absolute inset-0 m-auto h-[300px] w-[230px] [transform-style:preserve-3d] md:h-[360px] md:w-[270px]">
+        <motion.div style={{ rotateX: rotX, rotateZ: rotZ }} className="absolute inset-y-0 left-[2%] my-auto h-[300px] w-[200px] sm:left-[10%] sm:w-[230px] [transform-style:preserve-3d] md:h-[360px] md:w-[270px]">
           <motion.div style={{ translateZ: 0 }} className="absolute inset-0 rounded-2xl border border-white/20 bg-[linear-gradient(160deg,#8a2a12,#ff5a2c_60%,#ffb347)] shadow-2xl" />
           <motion.div style={{ translateZ: gap }} className="absolute inset-x-6 bottom-8 top-14 grid place-items-center">
             <div className="h-full w-24"><Earring /></div>
@@ -49,7 +49,7 @@ export function LayerPoster() {
           </motion.div>
         </motion.div>
 
-        <motion.ul style={{ opacity: labelOpacity }} className="absolute inset-y-0 right-0 flex flex-col justify-between py-8 text-right text-xs md:text-sm" aria-hidden>
+        <motion.ul style={{ opacity: labelOpacity }} className="absolute inset-y-0 right-0 flex max-w-[44%] flex-col justify-between py-8 text-right text-xs md:text-sm" aria-hidden>
           {[...LAYERS].reverse().map((l) => (
             <li key={l.key}><span className="hand block text-lg text-accent md:text-xl">{l.label}</span><span className="text-[var(--paper-dim)]">{l.note}</span></li>
           ))}

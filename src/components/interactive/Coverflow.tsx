@@ -54,7 +54,7 @@ export function Coverflow({ items }: { items: Project[] }) {
           if (e.key === "ArrowRight") { e.preventDefault(); go(active + 1); }
           if (e.key === "ArrowLeft") { e.preventDefault(); go(active - 1); }
         }}
-        className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[calc(50%-150px)] py-10 md:-mx-8 md:gap-6 md:px-[calc(50%-210px)]"
+        className="no-scrollbar relative left-1/2 -ml-[50vw] flex w-screen snap-x snap-mandatory gap-4 overflow-x-auto px-[calc(50vw-150px)] py-10 md:gap-6 md:px-[calc(50vw-210px)]"
         style={{ scrollbarWidth: "none" }}
       >
         {items.map((p, i) => (

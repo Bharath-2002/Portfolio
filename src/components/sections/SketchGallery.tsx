@@ -10,6 +10,8 @@ import { cn, ease } from "@/lib/cn";
 export function SketchGallery() {
   const [open, setOpen] = useState<Sketch | null>(null);
   const all = [...realSketches, ...sketches];
+  const regular = all.filter((s) => !s.wide);
+  const wide = all.filter((s) => s.wide);
 
   useEffect(() => {
     if (!open) return;
@@ -21,7 +23,7 @@ export function SketchGallery() {
   return (
     <>
       <ul className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5">
-        {all.map((s, i) => (
+        {regular.map((s, i) => (
           <Reveal key={s.id} delay={(i % 3) * 0.06} className={cn("list-none", s.wide && "col-span-2 md:col-span-3")}>
             <li>
               <Glass as="button" onClick={() => setOpen(s)} aria-label={`Open ${s.title}`}
@@ -40,6 +42,20 @@ export function SketchGallery() {
             <p className="hand text-2xl text-[var(--paper-dim)]">your real sketches go here ✎<br /><span className="text-sm">add files in content/sketches.ts</span></p>
           </li>
         </Reveal>
+        {wide.map((s, i) => (
+          <Reveal key={s.id} delay={(i % 3) * 0.06} className={cn("list-none", s.wide && "col-span-2 md:col-span-3")}>
+            <li>
+              <Glass as="button" onClick={() => setOpen(s)} aria-label={`Open ${s.title}`}
+                className="group block w-full overflow-hidden p-2 text-left transition-transform duration-200 active:scale-[0.985] md:p-3">
+                <div className={cn("relative overflow-hidden rounded-[var(--r-inner)] bg-black", s.wide ? "aspect-[16/8]" : "aspect-square")}>
+                  <Image src={s.src} alt={s.title} fill sizes="(min-width:768px) 380px, 46vw"
+                    className="ink object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]" />
+                </div>
+                <p className="font-display mt-3 px-1 text-lg italic">{s.title}</p>
+              </Glass>
+            </li>
+          </Reveal>
+        ))}
       </ul>
 
       <AnimatePresence>

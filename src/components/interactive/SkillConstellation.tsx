@@ -38,7 +38,7 @@ export function SkillConstellation() {
         grp.skills.forEach((label, i) => {
           const a = (i / n) * Math.PI * 2 + g;
           const rr = radius * (0.55 + (i % 3) * 0.25);
-          const hx = centers[g][0] * w + Math.cos(a) * rr * (wide ? 1.15 : 1.4);
+          const hx = Math.min(w - (wide ? 90 : 110), Math.max(14, centers[g][0] * w + Math.cos(a) * rr * (wide ? 1.15 : 1.1)));
           const hy = centers[g][1] * h + Math.sin(a) * rr * 0.8;
           nodes.push({ label, g, x: hx, y: hy, vx: 0, vy: 0, hx, hy, r: 3 + (label.length % 3) });
         });
