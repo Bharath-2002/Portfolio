@@ -18,7 +18,7 @@ export function ChapterCard({ c, flip }: { c: Chapter; flip: boolean }) {
         <span className="font-display tnum text-7xl italic leading-none text-accent md:text-9xl">{c.index}</span>
         <div className="pb-2 md:pb-4">
           <p className="eyebrow">{c.period} · {c.mode}</p>
-          <p className="mt-1 text-lg font-medium md:text-xl">{c.company} <span className="text-[var(--paper-dim)]">· {c.role}</span></p>
+          <p className="mt-1 text-lg font-medium md:text-xl">{c.company} <span className="text-[var(--fg-dim)]">· {c.role}</span></p>
         </div>
       </div>
 
@@ -35,15 +35,15 @@ export function ChapterCard({ c, flip }: { c: Chapter; flip: boolean }) {
               <motion.li key={b.lead} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "0px 0px -8% 0px" }} transition={{ duration: 0.5, delay: i * 0.05, ease: [0.23, 1, 0.32, 1] }}>
                 <Glass className="glass-lite !rounded-[var(--r-inner)] p-4 md:p-5">
-                  <p className="font-medium text-paper">{b.lead}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-[var(--paper-dim)] md:text-[0.95rem]">{b.text}</p>
+                  <p className="font-medium text-fg">{b.lead}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-[var(--fg-dim)] md:text-[0.95rem]">{b.text}</p>
                 </Glass>
               </motion.li>
             ))}
           </ul>
           <ul className="mt-6 flex flex-wrap gap-2">
             {c.tags.map((t) => (
-              <li key={t} className="rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--paper-dim)]">{t}</li>
+              <li key={t} className="rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--fg-dim)]">{t}</li>
             ))}
           </ul>
         </div>

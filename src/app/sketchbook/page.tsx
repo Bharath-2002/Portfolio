@@ -13,7 +13,7 @@ export default function SketchbookPage() {
         <h1 className="display-xl !text-[clamp(2.8rem,9vw,7rem)]">
           Ink, chalk and <em>curiosity.</em>
         </h1>
-        <p className="mt-6 max-w-2xl text-lg text-[var(--paper-dim)]">
+        <p className="mt-6 max-w-2xl text-lg text-[var(--fg-dim)]">
           Chalk-and-ink studies of the things I think about while code compiles. These were made with Nano Banana 2.1 and art-directed by me; my own pencil drawings join them soon. Tap any drawing to look closer.
         </p>
       </header>

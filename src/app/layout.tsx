@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Caveat, Fraunces, Inter } from "next/font/google";
+import { Anton, Caveat, Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { Backdrop } from "@/components/layout/Backdrop";
 import { Cursor } from "@/components/layout/Cursor";
@@ -8,7 +8,8 @@ import { Nav } from "@/components/layout/Nav";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { profile } from "@/content/profile";
 
-const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", style: ["normal", "italic"], axes: ["opsz"] });
+const anton = Anton({ subsets: ["latin"], weight: "400", variable: "--font-anton" });
+const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-serif" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const caveat = Caveat({ subsets: ["latin"], variable: "--font-caveat" });
 
@@ -20,11 +21,11 @@ export const metadata: Metadata = {
   description:
     "Portfolio of Bharath S, an AI Engineer building production GenAI systems, with hand-drawn interactive stories.",
 };
-export const viewport: Viewport = { themeColor: "#0d0c0b", viewportFit: "cover" };
+export const viewport: Viewport = { themeColor: "#ede5d6", viewportFit: "cover" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable} ${caveat.variable}`}>
+    <html lang="en" className={`${anton.variable} ${serif.variable} ${inter.variable} ${caveat.variable}`}>
       <body>
         <Backdrop />
         <SmoothScroll />

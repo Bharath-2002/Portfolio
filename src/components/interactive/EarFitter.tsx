@@ -36,9 +36,9 @@ export function EarFitter() {
   const reset = () => { animate(x, 24); animate(y, 40); setPlaced(false); setNear(false); };
 
   return (
-    <div className="glass p-5 md:p-8">
+    <div className="glass on-dark p-5 md:p-8">
       <div ref={box} className="relative mx-auto aspect-[3/4] w-full max-w-[340px] touch-none select-none">
-        <Image src="/art/ear.webp" alt="" fill sizes="340px" className="ink object-contain" draggable={false} />
+        <Image src="/art/ear.webp" alt="" fill sizes="340px" className="object-contain [mix-blend-mode:screen]" draggable={false} />
         {showPts && (
           <>
             <span aria-hidden className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-accent transition-[width,height] duration-150"
@@ -71,7 +71,7 @@ export function EarFitter() {
       </div>
 
       <div className="mx-auto mt-5 flex max-w-sm items-center justify-between gap-3">
-        <p className="min-h-12 text-sm text-[var(--paper-dim)]" aria-live="polite">
+        <p className="min-h-12 text-sm text-[var(--fg-dim)]" aria-live="polite">
           {placed ? <><span className="hand text-xl text-accent">Snapped.</span> That&apos;s the job of the trained pose model: 0.99 mAP50 on 1,090 labelled ears, exported to ONNX.</> : "Drag the stud toward the earlobe. Keypoints light up as you get close."}
         </p>
         <div className="flex shrink-0 flex-col gap-1">

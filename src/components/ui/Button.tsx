@@ -4,11 +4,13 @@ import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 const base =
-  "inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 text-sm font-medium tracking-wide transition-[transform,background-color,border-color] duration-150 ease-out active:scale-[0.97] select-none";
+  "inline-flex min-h-11 whitespace-nowrap items-center justify-center gap-2 rounded-full px-6 pill transition-[transform,background-color,border-color] duration-150 ease-out active:scale-[0.97] select-none";
 const variants = {
-  primary: "bg-accent text-ink hover:bg-[#ff7447]",
-  glass: "glass !rounded-full hover:border-white/30",
-  ghost: "border border-[var(--line)] hover:border-white/30 hover:bg-white/5",
+  primary: "bg-accent text-cream hover:bg-[#f56b47]",
+  glass: "bg-butter text-ink hover:bg-[#ffe98f]",
+  lilac: "bg-lilac text-ink hover:bg-[#dcbddc]",
+  ink: "bg-ink text-cream hover:bg-[#1d241c]",
+  ghost: "border border-[var(--line)] hover:border-fg/40 hover:bg-fg/5",
 } as const;
 
 type Common = { variant?: keyof typeof variants; children: ReactNode; className?: string };

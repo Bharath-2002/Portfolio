@@ -12,7 +12,7 @@ const Block = ({ n, title, text, children }: { n: string; title: string; text: s
       <span className="font-display tnum text-6xl italic leading-none text-accent md:text-8xl">{n}</span>
       <div>
         <h2 className="display-lg !text-[clamp(1.8rem,4vw,3rem)]">{title}</h2>
-        <p className="mt-2 max-w-2xl text-[var(--paper-dim)]">{text}</p>
+        <p className="mt-2 max-w-2xl text-[var(--fg-dim)]">{text}</p>
       </div>
     </Reveal>
     <Reveal>{children}</Reveal>

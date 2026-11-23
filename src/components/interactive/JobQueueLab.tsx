@@ -24,7 +24,7 @@ export function JobQueueLab() {
   const queued = s.jobs.filter((j) => j.status === "queued").length;
 
   return (
-    <div className="glass p-5 md:p-8">
+    <div className="glass on-dark p-5 md:p-8">
       <div className="flex flex-wrap gap-2">
         <Button variant="primary" onClick={() => { thud(); dispatch({ t: "crash" }); }}>💥 Crash a worker</Button>
         <Button variant="glass" onClick={() => dispatch({ t: "dup" })}>Submit duplicate</Button>
@@ -41,7 +41,7 @@ export function JobQueueLab() {
             <AnimatePresence initial={false}>
               {s.jobs.filter((j) => j.status === "queued").slice(0, 36).map((j) => (
                 <motion.li key={j.id} layout initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.6, opacity: 0 }} transition={{ duration: 0.2 }}
-                  className={cn("tnum rounded-md border px-2 py-1 text-[0.68rem]", j.attempts > 0 ? "border-accent text-accent" : "border-[var(--line)] text-[var(--paper-dim)]")}>
+                  className={cn("tnum rounded-md border px-2 py-1 text-[0.68rem]", j.attempts > 0 ? "border-accent text-accent" : "border-[var(--line)] text-[var(--fg-dim)]")}>
                   {j.key}{j.attempts > 0 && " ↻"}
                 </motion.li>
               ))}
@@ -59,7 +59,7 @@ export function JobQueueLab() {
                 className={cn("glass-inner relative overflow-hidden p-4 text-left transition-colors duration-200 active:scale-[0.99]", !w.alive && "!border-accent/60 bg-accent/10")}>
                 <div className="flex items-center justify-between text-sm">
                   <span className="font-medium">Worker {w.id}</span>
-                  <span className={cn("text-xs", w.alive ? "text-[var(--paper-dim)]" : "text-accent")}>
+                  <span className={cn("text-xs", w.alive ? "text-[var(--fg-dim)]" : "text-accent")}>
                     {!w.alive ? "crashed · lease will expire" : job ? job.key : "idle"}
                   </span>
                 </div>
@@ -76,7 +76,7 @@ export function JobQueueLab() {
               </button>
             );
           })}
-          <p className="hand text-lg text-[var(--paper-dim)]">↑ the faint bar is the lease; a crashed worker stops renewing it.</p>
+          <p className="hand text-lg text-[var(--fg-dim)]">↑ the faint bar is the lease; a crashed worker stops renewing it.</p>
         </div>
       </div>
 
@@ -90,10 +90,10 @@ export function JobQueueLab() {
       </dl>
 
       <ol className="mt-4 space-y-1 text-sm" aria-live="polite" aria-label="Event log">
-        {s.log.length === 0 && <li className="text-[var(--paper-faint)]">Waiting for events… try crashing a worker.</li>}
+        {s.log.length === 0 && <li className="text-[var(--fg-faint)]">Waiting for events… try crashing a worker.</li>}
         {s.log.map((l) => (
-          <li key={l.id} className={cn("tnum flex gap-3", l.kind === "warn" ? "text-accent" : l.kind === "ok" ? "text-paper" : "text-[var(--paper-dim)]")}>
-            <span className="text-[var(--paper-faint)]">t{l.tick}</span>{l.text}
+          <li key={l.id} className={cn("tnum flex gap-3", l.kind === "warn" ? "text-accent" : l.kind === "ok" ? "text-fg" : "text-[var(--fg-dim)]")}>
+            <span className="text-[var(--fg-faint)]">t{l.tick}</span>{l.text}
           </li>
         ))}
       </ol>

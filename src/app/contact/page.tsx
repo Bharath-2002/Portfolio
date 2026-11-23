@@ -21,7 +21,7 @@ export default function ContactPage() {
         <h1 className="display-xl !text-[clamp(2.8rem,9vw,7rem)]">
           Say <em>hello.</em>
         </h1>
-        <p className="mt-6 max-w-xl text-lg text-[var(--paper-dim)]">
+        <p className="mt-6 max-w-xl text-lg text-[var(--fg-dim)]">
           Building GenAI products, agents or a queue that refuses to die? I&apos;m in {profile.location}, and I answer email.
         </p>
       </header>
@@ -44,7 +44,7 @@ export default function ContactPage() {
         <Reveal className="mb-6">
           <p className="hand text-3xl text-accent">prefer pictures?</p>
           <h2 className="display-lg !text-[clamp(1.8rem,4vw,3rem)] italic">Draw me a message.</h2>
-          <p className="mt-2 max-w-xl text-[var(--paper-dim)]">Sketch it, save the PNG, attach it to an email. Best subject line I&apos;ll get all week.</p>
+          <p className="mt-2 max-w-xl text-[var(--fg-dim)]">Sketch it, save the PNG, attach it to an email. Best subject line I&apos;ll get all week.</p>
         </Reveal>
         <Reveal><DrawingPad height={320} /></Reveal>
         <div className="mt-6"><ButtonLink href={`mailto:${profile.email}?subject=Hello%20Bharath`}>Write the email →</ButtonLink></div>

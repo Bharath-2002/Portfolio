@@ -63,24 +63,24 @@ export function DrawingPad({ height = 380 }: { height?: number }) {
   };
 
   return (
-    <div className="glass p-4 md:p-6">
+    <div className="glass on-dark p-4 md:p-6">
       <div className="relative overflow-hidden rounded-[var(--r-inner)] border border-[var(--line)] bg-black/30">
         <canvas ref={cv} data-cursor style={{ height }} className="block w-full touch-none cursor-crosshair"
           onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up} aria-label="Drawing canvas" />
-        {empty && <p className="hand pointer-events-none absolute inset-0 grid place-items-center text-3xl text-[var(--paper-faint)]">draw something here ✎</p>}
+        {empty && <p className="hand pointer-events-none absolute inset-0 grid place-items-center text-3xl text-[var(--fg-faint)]">draw something here ✎</p>}
       </div>
       <div className="mt-4 flex flex-wrap items-center gap-3">
         <div className="flex gap-1" role="radiogroup" aria-label="Colour">
           {COLORS.map(([n, c]) => (
             <button key={n} role="radio" aria-checked={color === c} aria-label={n} onClick={() => setColor(c)} className="grid h-11 w-11 place-items-center rounded-full">
-              <span className={cn("h-6 w-6 rounded-full border-2 transition-transform", color === c ? "scale-110 border-paper" : "border-transparent")} style={{ background: c }} />
+              <span className={cn("h-6 w-6 rounded-full border-2 transition-transform", color === c ? "scale-110 border-fg" : "border-transparent")} style={{ background: c }} />
             </button>
           ))}
         </div>
         <div className="flex gap-1" role="radiogroup" aria-label="Brush size">
           {SIZES.map((s) => (
             <button key={s} role="radio" aria-checked={size === s} aria-label={`Size ${s}`} onClick={() => setSize(s)} className={cn("grid h-11 w-11 place-items-center rounded-full", size === s && "bg-white/10")}>
-              <span className="rounded-full bg-paper" style={{ width: s + 3, height: s + 3 }} />
+              <span className="rounded-full bg-fg" style={{ width: s + 3, height: s + 3 }} />
             </button>
           ))}
         </div>

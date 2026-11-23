@@ -32,3 +32,12 @@ export const marquee = [
   "RAG", "Agents", "LangGraph", "FastAPI", "PostgreSQL", "Qdrant", "YOLO11", "ONNX",
   "SAM3", "AWS ECS", "Gemini", "Claude", "OpenAI", "Job queues", "Human-in-the-loop",
 ];
+
+/** Bold one-liners for the home marquee (RIPE-style standards). */
+export const statements = [
+  "Evals over vibes",
+  "Retries over hope",
+  "Idempotent or it didn't happen",
+  "Ship the boring parts first",
+  "Draw it before you build it",
+];

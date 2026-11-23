@@ -99,7 +99,7 @@ export function PortraitLens({ className = "" }: { className?: string }) {
         className="pointer-events-none absolute h-[calc(var(--lr)*2*0.78)] w-[calc(var(--lr)*2*0.78)] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/50"
         style={{ left: "var(--lx)", top: "var(--ly)", boxShadow: "inset 0 0 30px rgb(255 255 255/.12)" }}
       />
-      <span className="hand pointer-events-none absolute bottom-3 left-4 rounded-full bg-ink/60 px-3 py-1 text-lg text-paper backdrop-blur-md">
+      <span className="hand pointer-events-none absolute bottom-3 left-4 rounded-full bg-ink/70 px-3 py-1 text-lg text-cream backdrop-blur-md">
         {pressed ? "pencil mode ✎" : "drag me, I'm sketchy"}
       </span>
     </div>

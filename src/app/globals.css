@@ -1,36 +1,57 @@
 @import "tailwindcss";
 
 /* ── Design tokens ─────────────────────────────────────────────
-   One accent (vermilion), one warm grey family, one radius scale:
-   cards 28 · inner 18 · inputs 14 · actions = pills. */
+   Warm cream paper, deep green-black ink, ONE accent (vermilion).
+   Pastels (butter, lilac, sage, peach) are quiet fills, never text.
+   Radii: panels 40 · cards 28 · inner 18 · inputs 14 · actions = pills.
+   `.on-dark` flips the foreground tokens for chalkboard panels. */
 :root {
-  --ink: #0d0c0b;
-  --ink-2: #16130f;
-  --paper: #f3ede2;
-  --paper-dim: rgb(243 237 226 / 0.62);
-  --paper-faint: rgb(243 237 226 / 0.38);
-  --accent: #ff5a2c;
-  --accent-soft: rgb(255 90 44 / 0.18);
-  --line: rgb(243 237 226 / 0.14);
+  --bg: #ede5d6;
+  --ink: #10140f;
+  --cream: #f6f0e4;
+  --fg: #10140f;
+  --fg-dim: rgb(16 20 15 / 0.66);
+  --fg-faint: rgb(16 20 15 / 0.42);
+  --line: rgb(16 20 15 / 0.14);
+  --accent: #ee5a33;
+  --accent-soft: rgb(238 90 51 / 0.16);
+  --butter: #fff0b3;
+  --lilac: #e6cde6;
+  --sage: #c5d5c1;
+  --peach: #f6d6c4;
+  --r-panel: 40px;
   --r-card: 28px;
   --r-inner: 18px;
   --r-input: 14px;
 }
 
+.on-dark {
+  --fg: #f6f0e4;
+  --fg-dim: rgb(246 240 228 / 0.66);
+  --fg-faint: rgb(246 240 228 / 0.4);
+  --line: rgb(246 240 228 / 0.16);
+  color: var(--fg);
+}
+
 @theme inline {
+  --color-bg: var(--bg);
   --color-ink: var(--ink);
-  --color-ink-2: var(--ink-2);
-  --color-paper: var(--paper);
+  --color-cream: var(--cream);
+  --color-fg: var(--fg);
   --color-accent: var(--accent);
+  --color-butter: var(--butter);
+  --color-lilac: var(--lilac);
+  --color-sage: var(--sage);
+  --color-peach: var(--peach);
   --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-display: var(--font-serif), Georgia, serif;
   --font-hand: var(--font-caveat), cursive;
 }
 
 html {
-  background: var(--ink);
-  color: var(--paper);
-  color-scheme: dark;
+  background: var(--bg);
+  color: var(--fg);
+  color-scheme: light;
   -webkit-text-size-adjust: 100%;
 }
 body {
@@ -41,7 +62,7 @@ body {
 }
 ::selection {
   background: var(--accent);
-  color: var(--ink);
+  color: var(--cream);
 }
 
 /* Lenis */
@@ -56,74 +77,101 @@ html.lenis body {
   overflow: hidden;
 }
 
-/* ── Glass ───────────────────────────────────────────────────── */
+/* ── Glass (frosted paper on cream) ──────────────────────────── */
 .glass {
   position: relative;
   border-radius: var(--r-card);
-  border: 1px solid var(--line);
+  border: 1px solid rgb(255 255 255 / 0.75);
   background:
     radial-gradient(
-      500px circle at var(--mx, 50%) var(--my, 0%),
-      rgb(255 255 255 / 0.1),
+      520px circle at var(--mx, 50%) var(--my, 0%),
+      rgb(255 255 255 / 0.55),
       transparent 55%
     ),
-    linear-gradient(145deg, rgb(255 255 255 / 0.09), rgb(255 255 255 / 0.025));
-  -webkit-backdrop-filter: blur(16px) saturate(1.5);
-  backdrop-filter: blur(16px) saturate(1.5);
+    linear-gradient(145deg, rgb(255 255 255 / 0.62), rgb(255 255 255 / 0.3));
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.16),
-    inset 0 -1px 0 rgb(0 0 0 / 0.25),
-    0 24px 60px -28px rgb(0 0 0 / 0.7);
+    inset 0 1px 0 rgb(255 255 255 / 0.9),
+    0 1px 0 rgb(16 20 15 / 0.04),
+    0 24px 50px -30px rgb(80 50 20 / 0.35);
 }
 @media (min-width: 768px) {
   .glass {
-    -webkit-backdrop-filter: blur(26px) saturate(1.6);
-    backdrop-filter: blur(26px) saturate(1.6);
+    -webkit-backdrop-filter: blur(24px) saturate(1.5);
+    backdrop-filter: blur(24px) saturate(1.5);
   }
 }
 .glass-inner {
   border-radius: var(--r-inner);
   border: 1px solid var(--line);
-  background: rgb(255 255 255 / 0.04);
+  background: rgb(255 255 255 / 0.4);
 }
 
-/* On phones, plain translucent fill instead of blur for long lists of cards */
+/* Chalkboard variant: dark glass for the interactive labs */
+.glass.on-dark {
+  border-color: rgb(246 240 228 / 0.14);
+  background:
+    radial-gradient(520px circle at var(--mx, 50%) var(--my, 0%), rgb(255 255 255 / 0.1), transparent 55%),
+    linear-gradient(145deg, #1d221b, #131712);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    0 30px 60px -30px rgb(16 20 15 / 0.7);
+}
+.on-dark .glass-inner {
+  background: rgb(255 255 255 / 0.05);
+}
+
+/* On phones, plain fill instead of blur for long lists of cards */
 @media (max-width: 767px) {
   .glass.glass-lite {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
-    background: linear-gradient(145deg, rgb(40 34 29 / 0.78), rgb(26 22 19 / 0.78));
+    background: rgb(255 255 255 / 0.55);
   }
 }
 
-/* Ink drawings are white-on-black; screen-blend drops the black */
+/* Chalk drawings are white-on-black. Invert → black ink on white, then
+   multiply drops the white so the ink sits on the cream paper. */
 .ink {
-  mix-blend-mode: screen;
+  filter: invert(1);
+  mix-blend-mode: multiply;
   user-select: none;
   -webkit-user-drag: none;
 }
 
+/* ── Type ────────────────────────────────────────────────────── */
 .font-display {
-  font-variation-settings: "opsz" 144;
+  font-family: var(--font-serif), Georgia, serif;
 }
-.display-xl {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-size: clamp(2.75rem, 9.5vw, 7.25rem);
-  line-height: 0.92;
-  letter-spacing: -0.035em;
+.display-xl,
+.display-lg {
+  font-family: var(--font-anton), Impact, sans-serif;
+  text-transform: uppercase;
+  font-style: normal !important;
   font-weight: 400;
 }
+.display-xl {
+  font-size: clamp(3.1rem, 11.5vw, 9.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.005em;
+}
 .display-lg {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-size: clamp(2.25rem, 6.5vw, 5rem);
-  line-height: 0.98;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.4rem, 7vw, 5.25rem);
+  line-height: 0.94;
+  letter-spacing: 0;
+}
+.display-xl em,
+.display-lg em {
+  font-style: normal;
+  color: var(--accent);
 }
 .eyebrow {
   font-size: 0.72rem;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--paper-dim);
+  color: var(--fg-dim);
 }
 .hand {
   font-family: var(--font-caveat), cursive;
@@ -132,21 +180,48 @@ html.lenis body {
   font-variant-numeric: tabular-nums;
 }
 
+/* Pill actions, RIPE-style: small caps, wide tracking */
+.pill {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
 /* hand-drawn underline */
 .scribble {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 40 2, 70 12, 110 6 S 170 3, 198 7' fill='none' stroke='%23ff5a2c' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 40 2, 70 12, 110 6 S 170 3, 198 7' fill='none' stroke='%2310140f' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-size: 100% 0.32em;
+  background-size: 100% 0.2em;
   background-position: 0 100%;
-  padding-bottom: 0.12em;
+  padding-bottom: 0.06em;
+}
+
+/* Rounded-top colour panel that rises over the page (Jemini) */
+.panel-rise {
+  border-top-left-radius: var(--r-panel);
+  border-top-right-radius: var(--r-panel);
+}
+
+/* Soft morphing blob */
+@keyframes blob {
+  0%, 100% { border-radius: 42% 58% 55% 45% / 50% 42% 58% 50%; }
+  33% { border-radius: 58% 42% 44% 56% / 44% 56% 44% 56%; }
+  66% { border-radius: 46% 54% 60% 40% / 56% 46% 54% 44%; }
+}
+.blob {
+  animation: blob 14s ease-in-out infinite;
+  background:
+    radial-gradient(circle at 25% 20%, #b983e0, transparent 55%),
+    radial-gradient(circle at 70% 80%, #e8b9d3, transparent 60%),
+    linear-gradient(160deg, #e79a8f, #dd8aa0);
 }
 
 /* ── Ambient backdrop ────────────────────────────────────────── */
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.55;
+  filter: blur(80px);
   will-change: transform;
 }
 @keyframes drift-a {
@@ -162,8 +237,8 @@ html.lenis body {
 .grain {
   position: absolute;
   inset: 0;
-  opacity: 0.09;
-  mix-blend-mode: overlay;
+  opacity: 0.1;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -175,7 +250,8 @@ html.lenis body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .orb {
+  .orb,
+  .blob {
     animation: none !important;
   }
   * {

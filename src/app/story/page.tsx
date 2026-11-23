@@ -15,7 +15,7 @@ export default function StoryPage() {
         <h1 className="display-xl !text-[clamp(2.8rem,9vw,7rem)]">
           Three jobs, <em>one</em> plot.
         </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--paper-dim)]">{profile.longAbout}</p>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--fg-dim)]">{profile.longAbout}</p>
         <nav aria-label="Chapters" className="mt-8 flex flex-wrap gap-2">
           {chapters.map((c) => (
             <a key={c.id} href={`#${c.id}`} className="glass inline-flex min-h-11 items-center gap-2 !rounded-full px-4 text-sm">

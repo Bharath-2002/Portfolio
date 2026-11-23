@@ -120,14 +120,14 @@ export function SkillConstellation() {
           </button>
         ))}
       </div>
-      <div className="glass overflow-hidden">
+      <div className="glass on-dark overflow-hidden">
         <canvas ref={canvas} data-cursor className="block h-[620px] w-full touch-pan-y md:h-[460px]" aria-hidden />
       </div>
       <dl className="mt-6 grid gap-4 md:grid-cols-3">
         {skillGroups.map((g) => (
           <div key={g.id}>
             <dt className="eyebrow mb-2">{g.label}</dt>
-            <dd className="text-sm leading-relaxed text-[var(--paper-dim)]">{g.skills.join(" · ")}</dd>
+            <dd className="text-sm leading-relaxed text-[var(--fg-dim)]">{g.skills.join(" · ")}</dd>
           </div>
         ))}
       </dl>

@@ -74,16 +74,16 @@ export function Coverflow({ items }: { items: Project[] }) {
             <div className="relative">
               <div className="flex items-center justify-between">
                 <span className="eyebrow">{p.kind}</span>
-                <span className="tnum text-xs text-[var(--paper-faint)]">{p.year}</span>
+                <span className="tnum text-xs text-[var(--fg-faint)]">{p.year}</span>
               </div>
               <h3 className="font-display mt-6 text-3xl leading-[1.02] tracking-tight md:text-4xl">{p.title}</h3>
               <p className="hand mt-2 text-xl text-accent md:text-2xl">{p.kicker}</p>
-              <p className="mt-4 line-clamp-5 text-sm leading-relaxed text-[var(--paper-dim)] md:text-[0.95rem]">{p.blurb}</p>
+              <p className="mt-4 line-clamp-5 text-sm leading-relaxed text-[var(--fg-dim)] md:text-[0.95rem]">{p.blurb}</p>
             </div>
             <div className="relative">
               <ul className="mb-5 flex flex-wrap gap-1.5">
                 {p.stack.slice(0, 4).map((s) => (
-                  <li key={s} className="rounded-full border border-[var(--line)] px-2.5 py-1 text-[0.7rem] text-[var(--paper-dim)]">{s}</li>
+                  <li key={s} className="rounded-full border border-[var(--line)] px-2.5 py-1 text-[0.7rem] text-[var(--fg-dim)]">{s}</li>
                 ))}
               </ul>
               <a
@@ -91,7 +91,7 @@ export function Coverflow({ items }: { items: Project[] }) {
                 target="_blank"
                 rel="noreferrer"
                 tabIndex={i === active ? 0 : -1}
-                className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-paper underline decoration-accent decoration-2 underline-offset-4"
+                className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-fg underline decoration-accent decoration-2 underline-offset-4"
               >
                 View on GitHub <span aria-hidden>↗</span>
               </a>
@@ -102,7 +102,7 @@ export function Coverflow({ items }: { items: Project[] }) {
 
       <div className="mt-2 flex items-center justify-center gap-4">
         <button onClick={() => go(active - 1)} disabled={active === 0} aria-label="Previous project" className="glass grid h-11 w-11 place-items-center !rounded-full transition-transform active:scale-95 disabled:opacity-30">←</button>
-        <p className="tnum min-w-16 text-center text-sm text-[var(--paper-dim)]" aria-live="polite">
+        <p className="tnum min-w-16 text-center text-sm text-[var(--fg-dim)]" aria-live="polite">
           {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
         </p>
         <button onClick={() => go(active + 1)} disabled={active === items.length - 1} aria-label="Next project" className="glass grid h-11 w-11 place-items-center !rounded-full transition-transform active:scale-95 disabled:opacity-30">→</button>

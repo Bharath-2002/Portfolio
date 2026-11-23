@@ -36,7 +36,7 @@ export function LayerPoster() {
   const labelOpacity = useTransform(p, [0.25, 0.7], [0, 1]);
 
   return (
-    <div className="glass p-5 md:p-8">
+    <div className="glass on-dark p-5 md:p-8">
       <div className="relative mx-auto h-[360px] w-full max-w-md [perspective:1200px] md:h-[440px]">
         <motion.div style={{ rotateX: rotX, rotateZ: rotZ }} className="absolute inset-y-0 left-[2%] my-auto h-[260px] w-[170px] sm:left-[10%] sm:h-[300px] sm:w-[230px] [transform-style:preserve-3d] md:h-[360px] md:w-[270px]">
           <motion.div style={{ translateZ: 0 }} className="absolute inset-0 rounded-2xl border border-white/20 bg-[linear-gradient(160deg,#8a2a12,#ff5a2c_60%,#ffb347)] shadow-2xl" />
@@ -44,14 +44,14 @@ export function LayerPoster() {
             <div className="h-full w-24"><Earring /></div>
           </motion.div>
           <motion.div style={{ translateZ: gap2 }} className="absolute inset-x-5 top-5">
-            <p className="font-display text-3xl italic leading-none text-paper drop-shadow">Everyday<br />gold.</p>
-            <p className="mt-1 text-[0.6rem] uppercase tracking-[0.25em] text-paper/80">Studs · New collection</p>
+            <p className="font-display text-3xl italic leading-none text-cream drop-shadow">Everyday<br />gold.</p>
+            <p className="mt-1 text-[0.6rem] uppercase tracking-[0.25em] text-fg/80">Studs · New collection</p>
           </motion.div>
         </motion.div>
 
         <motion.ul style={{ opacity: labelOpacity }} className="absolute inset-y-0 right-0 flex max-w-[44%] flex-col justify-between py-8 text-right text-xs md:text-sm" aria-hidden>
           {[...LAYERS].reverse().map((l) => (
-            <li key={l.key}><span className="hand block text-lg text-accent md:text-xl">{l.label}</span><span className="hidden text-[var(--paper-dim)] sm:block">{l.note}</span></li>
+            <li key={l.key}><span className="hand block text-lg text-accent md:text-xl">{l.label}</span><span className="hidden text-[var(--fg-dim)] sm:block">{l.note}</span></li>
           ))}
         </motion.ul>
       </div>

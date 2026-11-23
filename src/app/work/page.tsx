@@ -28,9 +28,9 @@ export default function WorkPage() {
                 <a href={p.href} target="_blank" rel="noreferrer" className="flex min-h-11 items-center justify-between gap-4 p-5">
                   <span>
                     <span className="block font-medium">{p.title}</span>
-                    <span className="block text-sm text-[var(--paper-dim)]">{p.stack.join(" · ")}</span>
+                    <span className="block text-sm text-[var(--fg-dim)]">{p.stack.join(" · ")}</span>
                   </span>
-                  <span className="tnum shrink-0 text-sm text-[var(--paper-faint)]">{p.year} ↗</span>
+                  <span className="tnum shrink-0 text-sm text-[var(--fg-faint)]">{p.year} ↗</span>
                 </a>
               </Glass>
             </Reveal>

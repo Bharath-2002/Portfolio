@@ -1,15 +1,17 @@
+const DOTS = ["var(--accent)", "var(--sage)", "var(--lilac)", "var(--peach)"];
+
 export function Marquee({ items }: { items: string[] }) {
   const row = [...items, ...items];
   return (
     <div
-      className="group relative overflow-hidden py-5 [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]"
+      className="group relative overflow-hidden py-4"
       aria-hidden
     >
       <div className="flex w-max gap-10 whitespace-nowrap [animation:marquee_38s_linear_infinite] group-hover:[animation-play-state:paused] motion-reduce:[animation:none]">
         {row.map((t, i) => (
-          <span key={i} className="font-display text-3xl italic text-[var(--paper-dim)] md:text-5xl">
+          <span key={i} className="display-lg !text-[clamp(2.6rem,8vw,6.5rem)]">
             {t}
-            <span className="ml-10 text-accent not-italic">✦</span>
+            <span className="ml-10 inline-block h-[0.2em] w-[0.2em] rounded-full align-middle" style={{ background: DOTS[i % DOTS.length] }} />
           </span>
         ))}
       </div>
